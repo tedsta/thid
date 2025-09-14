@@ -2,7 +2,7 @@ use core::{cell::UnsafeCell, mem::MaybeUninit};
 
 use crate::ThreadId;
 
-const DEFAULT_MAX_THREADS: usize = usize::BITS as usize;
+pub const DEFAULT_MAX_THREADS: usize = usize::BITS as usize;
 
 /// An owned thread-local value.
 pub struct ThreadLocal<T: Send, const MAX_THREADS: usize = DEFAULT_MAX_THREADS> {

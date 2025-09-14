@@ -45,7 +45,7 @@
 #![cfg_attr(all(not(feature = "std")), feature(thread_local))]
 
 pub use thread_id::ThreadId;
-pub use thread_local::ThreadLocal;
+pub use thread_local::{DEFAULT_MAX_THREADS, ThreadLocal};
 
 mod thread_id;
 mod thread_local;

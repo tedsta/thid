@@ -1,10 +1,15 @@
 [package]
 name = "thid"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2024"
+description = "No-std, no-alloc thread IDs and thread-locals."
+repository = "https://github.com/tedsta/thid"
+documentation = "https://docs.rs/thid"
+keywords = ["thread", "thread-local"]
+categories = ["concurrency", "data-structures"]
+license = "MIT"
+readme = "README.md"
 
 [features]
 default = ["std"]
 std = []
-
-[dependencies]
