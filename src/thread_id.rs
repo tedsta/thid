@@ -35,6 +35,11 @@ impl ThreadId {
         self.0 as usize
     }
 
+    #[cfg(feature = "test")]
+    pub fn clear() {
+        THREAD_ID.set(Self::uninitialized());
+    }
+
     const fn uninitialized() -> Self {
         Self(u32::MAX)
     }

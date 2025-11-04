@@ -1,6 +1,6 @@
 [package]
 name = "thid"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2024"
 description = "No-std, no-alloc thread IDs and thread-locals."
 repository = "https://github.com/tedsta/thid"
@@ -13,3 +13,13 @@ readme = "README.md"
 [features]
 default = ["std"]
 std = []
+test = []
+
+[dev-dependencies]
+core_affinity = "0.8"
+criterion = "0.4"
+
+[[bench]]
+name = "benches"
+harness = false
+required-features = ["test"]
