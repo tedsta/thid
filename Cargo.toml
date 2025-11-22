@@ -1,6 +1,6 @@
 [package]
 name = "thid"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2024"
 description = "No-std, no-alloc thread IDs and thread-locals."
 repository = "https://github.com/tedsta/thid"
