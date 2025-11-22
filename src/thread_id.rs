@@ -16,6 +16,7 @@ static THREAD_ID: Cell<ThreadId> = Cell::new(ThreadId::uninitialized());
 pub struct ThreadId(u32);
 
 impl ThreadId {
+    #[inline]
     pub fn current() -> Self {
         let mut thread_id = THREAD_ID.get();
 
@@ -27,10 +28,12 @@ impl ThreadId {
         thread_id
     }
 
+    #[inline]
     pub fn as_u32(&self) -> u32 {
         self.0
     }
 
+    #[inline]
     pub fn as_usize(&self) -> usize {
         self.0 as usize
     }
@@ -44,10 +47,12 @@ impl ThreadId {
         Self(u32::MAX)
     }
 
+    #[cold]
     fn next() -> Self {
         ThreadId(NEXT_THREAD_ID.fetch_add(1, Ordering::Relaxed))
     }
 
+    #[inline]
     fn is_uninitialized(&self) -> bool {
         self.0 == u32::MAX
     }

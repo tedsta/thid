@@ -83,7 +83,7 @@ impl<const MAX_THREADS: usize, T: Send> ThreadLocal<T, MAX_THREADS> {
     #[inline]
     fn get_inner(&self, thread_id: usize) -> Option<&T> {
         if self.is_present(thread_id) {
-            Some(unsafe { (&*self.entries[thread_id].get()).assume_init_ref() })
+            Some(unsafe { (&*self.entries.get_unchecked(thread_id).get()).assume_init_ref() })
         } else {
             None
         }
@@ -117,6 +117,7 @@ impl<const MAX_THREADS: usize, T: Send> ThreadLocal<T, MAX_THREADS> {
 
     /// SAFETY: The caller must guarantee that thread_id < MAX_THREADS, for example by having
     /// called `self.is_present(thread_id)`.
+    #[cold]
     fn insert(&self, thread_id: usize, value: T) -> &T {
         unsafe {
             *self.is_present.get_unchecked(thread_id).get() = true;
