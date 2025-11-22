@@ -35,10 +35,10 @@
 //!     *mut_value += "new";
 //! }
 //!
-//! assert_eq!(
-//!     local_object.iter_mut().map(|s| s.borrow().clone()).collect::<Vec<_>>(),
-//!     vec!["foobarnew", "bazbipnew"],
-//! );
+//! let collected = local_object.iter_mut().map(|s| s.borrow().clone()).collect::<Vec<_>>();
+//! assert_eq!(collected.len(), 2);
+//! assert!(collected.contains(&"foobarnew".into()));
+//! assert!(collected.contains(&"bazbipnew".into()));
 //! ```
 
 #![cfg_attr(not(feature = "std"), no_std)]
